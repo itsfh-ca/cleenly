@@ -1,0 +1,82 @@
+---
+const pairs = [
+  {
+    before: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80",
+    after: "https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=600&q=80",
+    label: "Kitchen",
+  },
+  {
+    before: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=600&q=80",
+    after: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&q=80",
+    label: "Bathroom",
+  },
+  {
+    before: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80",
+    after: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&q=80",
+    label: "Living Room",
+  },
+];
+---
+
+<section class="py-16 bg-slate-50">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <p class="text-primary font-semibold text-sm uppercase tracking-widest mb-3">
+        Visual Proof
+      </p>
+      <h2 class="text-4xl md:text-5xl font-semibold tracking-tight text-slate-900 mb-4">
+        See the Cleenly Difference
+      </h2>
+      <p class="text-slate-500 max-w-md mx-auto">
+        Real results from real homes we've cleaned.
+      </p>
+    </div>
+
+    <!-- Before / After Grid -->
+    <div class="grid md:grid-cols-3 gap-6">
+      {pairs.map((pair) => (
+        <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-slate-100">
+          <div class="grid grid-cols-2">
+            <!-- Before -->
+            <div class="relative aspect-4/3">
+              <img
+                src={pair.before}
+                alt={`Before cleaning - ${pair.label}`}
+                class="w-full h-full object-cover"
+                width="600"
+                height="450"
+                loading="lazy"
+              />
+              <div class="absolute top-3 left-3 bg-slate-900/80 text-white text-xs font-bold tracking-widest px-3 py-1 rounded-md backdrop-blur-sm">
+                BEFORE
+              </div>
+            </div>
+
+            <!-- After -->
+            <div class="relative aspect-4/3">
+              <img
+                src={pair.after}
+                alt={`After cleaning - ${pair.label}`}
+                class="w-full h-full object-cover"
+                width="600"
+                height="450"
+                loading="lazy"
+              />
+              <div class="absolute top-3 left-3 bg-primary text-primary-foreground text-xs font-bold tracking-widest px-3 py-1 rounded-md backdrop-blur-sm">
+                AFTER
+              </div>
+            </div>
+          </div>
+
+          <!-- Label -->
+          <div class="px-5 py-4 text-center border-t border-slate-100">
+            <span class="font-semibold text-slate-700">
+              {pair.label}
+            </span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

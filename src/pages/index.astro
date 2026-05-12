@@ -1,0 +1,30 @@
+---
+import Hero from "@/components/Hero.astro";
+import Layout from "../layouts/Layout.astro";
+import { getSiteSettings } from "@/lib/consts";
+import TrustReviews from "@/components/TrustReviews.astro";
+import Services from "@/components/Services.astro";
+import Pricing from "@/components/Pricing.astro";
+import HowitWorks from "@/components/HowitWorks.astro";
+import BeforeAfter from "@/components/BeforeAfter.astro";
+import WhyChooseUs from "@/components/WhyChooseUs.astro";
+import ServiceArea from "@/components/ServiceArea.astro";
+import FAQ from "@/components/FAQ.astro";
+import FinalCTA from "@/components/FinalCTA.astro";
+import QuoteForm from "@/components/QuoteForm.astro";
+const site = await getSiteSettings();
+---
+
+<Layout site={site}>
+  <Hero />
+  <QuoteForm />
+  <TrustReviews />
+  <Services />
+  <Pricing />
+  <HowitWorks />
+  <BeforeAfter />
+  <WhyChooseUs />
+  <ServiceArea />
+  <FAQ />
+  <FinalCTA />
+</Layout>

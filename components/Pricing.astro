@@ -1,0 +1,221 @@
+---
+const plans = [
+  {
+    size: "1 Bedroom",
+    baths: "1 Bath",
+    standard: "$99",
+    deep: "$179",
+    moveout: "$199",
+    sqft: "up to 700 sqft",
+  },
+  {
+    size: "2 Bedrooms",
+    baths: "1–2 Baths",
+    standard: "$139",
+    deep: "$229",
+    moveout: "$259",
+    sqft: "700–1,100 sqft",
+    popular: true,
+  },
+  {
+    size: "3 Bedrooms",
+    baths: "2 Baths",
+    standard: "$179",
+    deep: "$289",
+    moveout: "$319",
+    sqft: "1,100–1,600 sqft",
+  },
+  {
+    size: "4+ Bedrooms",
+    baths: "2–3 Baths",
+    standard: "$229+",
+    deep: "$349+",
+    moveout: "$389+",
+    sqft: "1,600+ sqft",
+  },
+];
+---
+
+<section id="pricing" class="py-16 bg-slate-50">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <p
+        class="text-primary font-semibold text-sm uppercase tracking-widest mb-3"
+      >
+        Transparent Pricing
+      </p>
+      <h2
+        class="text-4xl md:text-5xl font-semibold tracking-tight text-slate-900 mb-4"
+      >
+        Simple, Flat-Rate Pricing
+      </h2>
+      <p class="text-slate-500 max-w-xl mx-auto">
+        No hourly rates, no hidden fees. You know the price before we arrive.
+      </p>
+    </div>
+
+    <!-- Desktop Table -->
+    <div
+      class="hidden md:block bg-white rounded-3xl shadow overflow-hidden border border-slate-100"
+    >
+      <table class="w-full">
+        <thead>
+          <tr class="bg-slate-50 border-b border-slate-100">
+            <th
+              class="text-left p-6 text-sm font-semibold text-slate-500 uppercase tracking-wider"
+              >Home Size</th
+            >
+            <th class="text-center p-6 text-sm font-semibold text-slate-700"
+              >Standard Clean</th
+            >
+            <th
+              class="text-center p-6 text-sm font-semibold text-primary bg-primary/5"
+              >Deep Clean</th
+            >
+            <th class="text-center p-6 text-sm font-semibold text-slate-700"
+              >Move-In/Out</th
+            >
+            <th class="text-center p-6 w-32"></th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-100">
+          {
+            plans.map((plan) => (
+              <tr
+                class:list={[
+                  "hover:bg-slate-50/80 transition-colors",
+                  plan.popular && "bg-primary/5",
+                ]}
+              >
+                <td class="p-6">
+                  <div class="flex items-center gap-3">
+                    <div>
+                      <div class="flex items-center gap-2">
+                        <span class="font-semibold text-slate-900">
+                          {plan.size}
+                        </span>
+                        {plan.popular && (
+                          <span class="bg-primary/10 text-primary text-xs font-medium px-3 py-1 rounded-full">
+                            Most Popular
+                          </span>
+                        )}
+                      </div>
+                      <p class="text-sm text-slate-500 mt-1">
+                        {plan.sqft} · {plan.baths}
+                      </p>
+                    </div>
+                  </div>
+                </td>
+                <td class="p-6 text-center">
+                  <span class="text-2xl font-semibold text-slate-800">
+                    {plan.standard}
+                  </span>
+                </td>
+                <td class="p-6 text-center bg-primary/5">
+                  <span class="text-2xl font-semibold text-primary">
+                    {plan.deep}
+                  </span>
+                </td>
+                <td class="p-6 text-center">
+                  <span class="text-2xl font-semibold text-slate-800">
+                    {plan.moveout}
+                  </span>
+                </td>
+                <td class="p-6 text-right">
+                  <a
+                    href="#quote"
+                    class="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
+                  >
+                    Book now →
+                  </a>
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Mobile Cards -->
+    <div class="md:hidden grid sm:grid-cols-2 gap-5">
+      {
+        plans.map((plan) => (
+          <div
+            class:list={[
+              "relative bg-white border rounded-3xl p-6 shadow-sm",
+              plan.popular ? "border-primary shadow-md" : "border-slate-200",
+            ]}
+          >
+            {plan.popular && (
+              <span class="absolute -top-3 left-6 bg-primary text-primary-foreground text-xs font-bold px-4 py-1 rounded-full">
+                Most Popular
+              </span>
+            )}
+
+            <div class="mb-5">
+              <h3 class="text-xl font-semibold text-slate-900">{plan.size}</h3>
+              <p class="text-sm text-slate-500 mt-1">
+                {plan.sqft} · {plan.baths}
+              </p>
+            </div>
+
+            <div class="space-y-4">
+              <div class="flex justify-between items-center">
+                <span class="text-slate-500">Standard</span>
+                <span class="text-xl font-semibold text-slate-800">
+                  {plan.standard}
+                </span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-slate-500">Deep Clean</span>
+                <span class="text-xl font-semibold text-primary">
+                  {plan.deep}
+                </span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-slate-500">Move-In/Out</span>
+                <span class="text-xl font-semibold text-slate-800">
+                  {plan.moveout}
+                </span>
+              </div>
+            </div>
+
+            <a
+              href="#quote"
+              class="mt-8 block w-full text-center bg-primary text-primary-foreground font-semibold py-3.5 rounded-2xl hover:bg-primary/90 transition-colors"
+            >
+              Book This Size
+            </a>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Disclaimer -->
+    <div
+      class="mt-10 max-w-2xl mx-auto bg-amber-50 border border-amber-200 rounded-2xl p-6 flex gap-4"
+    >
+      <svg
+        width="22"
+        height="22"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#d97706"
+        stroke-width="2.25"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="shrink-0 mt-0.5"
+      >
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="12" y1="8" x2="12" y2="12"></line>
+        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+      </svg>
+      <p class="text-sm leading-relaxed text-amber-800">
+        Prices shown are starting rates for homes in good condition. Heavily
+        soiled homes, pets, or extra large spaces may require an adjusted quote.
+        We'll always confirm your price before starting.
+      </p>
+    </div>
+  </div>
+</section>

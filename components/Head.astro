@@ -1,0 +1,101 @@
+---
+import { ClientRouter } from 'astro:transitions'
+import { SEO } from "astro-seo";
+import { getSiteSettings, ANALYTICS, UMAMI } from "@/lib/consts";
+const site = await getSiteSettings();
+---
+<SEO
+      title=`${site.siteTitle} - ${site.siteName}`
+      description={site.siteDescription}
+      canonical={site.siteUrl}
+      charset='utf-8'
+      openGraph={{
+        basic: {
+          title: `${site.siteTitle}`,
+          type: "website",
+          image: `${site.defaultOgImage?.url || null}`,
+        },
+        optional: {
+          description: `${site.siteDescription}`,
+        },
+      }}
+      twitter={{
+        creator: "@cleenly",
+      }}
+      extend={{
+        link: [{ rel: "icon", href: "/favicon.ico" }],
+        meta: [
+          {
+            name: "twitter:image",
+            content: `${site.defaultOgImage?.url || null}`,
+          },
+          { name: "twitter:title", content: `${site.siteTitle}` },
+          { name: "twitter:description", content: `${site.siteDescription}` },
+          { name: "twitter:url", content: site.siteUrl },
+          { name: "twitter:card", content: "summary_large_image" },
+          { name: "generator", content: Astro.generator },
+          { name: "viewport",
+            content: "width=device-width, initial-scale=1.0, user-scalable=yes",
+          },
+        ],
+      }}
+    />
+<head>
+<link rel="icon" href="/favicon.ico" />
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "CleaningService",
+    name: site.siteTitle,
+    description: site.siteDescription,
+    url: site.siteUrl,
+    telephone: site.phone,
+    image: site.defaultOgImage?.url || null,
+    logo: site.logo?.url,
+    areaServed: ["Langley", "Surrey", "White Rock"],
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: site.address,
+      addressRegion: "BC",
+      addressCountry: "CA",
+    },
+    sameAs: [
+      site.social?.facebook,
+      site.social?.instagram,
+      site.social?.linkedin,
+      site.social?.x,
+    ].filter(Boolean),
+  })}
+/>
+
+  {ANALYTICS.google && (
+    <>
+      <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+      <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+    </>
+  )}
+  {UMAMI.websiteId && (
+    <>
+      <link rel="dns-prefetch" href="https://cloud.umami.is" />
+      <link rel="preconnect" href="https://cloud.umami.is" crossorigin />
+    </>
+  )}
+  
+  {ANALYTICS.google && (
+    <>
+      <script is:inline define:vars={{ gaId: ANALYTICS.google }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', gaId);
+      </script>
+      <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${ANALYTICS.google}`}></script>
+    </>
+  )}
+  
+  <ClientRouter />
+  {UMAMI.websiteId && (
+    <script is:inline defer src="https://cloud.umami.is/script.js" define:vars={{ websiteId: UMAMI.websiteId }} data-website-id={UMAMI.websiteId}></script>
+  )}
+</head>

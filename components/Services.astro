@@ -1,0 +1,118 @@
+---
+const services = [
+  {
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
+    title: 'Standard Cleaning',
+    description: 'Regular maintenance cleaning covering all the essentials — kitchen, bathrooms, bedrooms, living areas, and floors.',
+    features: ['Dusting & vacuuming', 'Kitchen wipe-down', 'Bathroom sanitizing', 'Floor mopping'],
+    from: 'From $99',
+    popular: false,
+  },
+  {
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>`,
+    title: 'Deep Cleaning',
+    description: 'Thorough, top-to-bottom clean including inside appliances, baseboards, light fixtures, and hard-to-reach areas.',
+    features: ['Everything in Standard', 'Inside oven & fridge', 'Baseboards & vents', 'Interior windows'],
+    from: 'From $179',
+    popular: true,
+  },
+  {
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>`,
+    title: 'Move-In / Move-Out',
+    description: 'Complete cleaning for empty homes. Ideal before moving in or after moving out to get your deposit back.',
+    features: ['Full deep clean', 'Inside all cabinets', 'Appliance interiors', 'Wall spot cleaning'],
+    from: 'From $199',
+    popular: false,
+  },
+  {
+    icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>`,
+    title: 'Airbnb Cleaning',
+    description: 'Fast, reliable turnovers between guests. We restock essentials and ensure every guest gets a 5-star experience.',
+    features: ['Quick turnaround', 'Linen change', 'Restocking supplies', 'Guest-ready setup'],
+    from: 'From $89',
+    popular: false,
+  },
+];
+---
+
+<section id="services" class="py-16 bg-white">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <p class="text-primary font-semibold text-sm uppercase tracking-widest mb-3">
+        Our Services
+      </p>
+      <h2 class="text-4xl md:text-5xl font-semibold tracking-tight text-slate-900 mb-4">
+        Cleaning Services for Every Need
+      </h2>
+      <p class="text-slate-500 max-w-xl mx-auto">
+        From routine maintenance to deep cleans and move-out services — we've got you covered.
+      </p>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {services.map((service) => (
+        <div
+          class:list={[
+            "relative rounded-3xl p-7 flex flex-col transition-all duration-300 hover:-translate-y-1 group",
+            service.popular
+              ? "bg-primary text-primary-foreground shadow-xl shadow-primary/20"
+              : "bg-white border border-slate-200 hover:border-primary/30 hover:shadow-xl"
+          ]}
+        >
+          {service.popular && (
+            <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-amber-400 text-amber-900 text-xs font-bold px-4 py-1 rounded-full shadow">
+              Most Popular
+            </span>
+          )}
+
+          <!-- Icon -->
+          <div
+            class:list={[
+              "w-14 h-14 rounded-2xl flex items-center justify-center mb-6",
+              service.popular ? "bg-white/20 text-white" : "bg-primary/10 text-primary"
+            ]}
+            set:html={service.icon}
+          />
+
+          <!-- Title & Description -->
+          <h3 class={`font-semibold text-2xl mb-3 ${service.popular ? "text-white" : "text-slate-900"}`}>
+            {service.title}
+          </h3>
+          
+          <p class={`text-[15px] leading-relaxed mb-6 flex-1 ${service.popular ? "text-primary-foreground/80" : "text-slate-600"}`}>
+            {service.description}
+          </p>
+
+          <!-- Features -->
+          <ul class="space-y-3 flex-1 mb-8">
+            {service.features.map((feature) => (
+              <li class={`flex items-start gap-2.5 text-sm ${service.popular ? "text-primary-foreground/90" : "text-slate-600"}`}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={service.popular ? "rgba(255,255,255,0.85)" : "#3b82f6"} stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 shrink-0">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                {feature}
+              </li>
+            ))}
+          </ul>
+
+          <!-- Footer -->
+          <div class="pt-6 border-t border-current/10 mt-auto flex items-center justify-between">
+            <span class={`font-bold text-xl ${service.popular ? "text-white" : "text-primary"}`}>
+              {service.from}
+            </span>
+            
+            <a
+              href="#quote"
+              class={`text-sm font-semibold flex items-center gap-1.5 hover:gap-2 transition-all group-hover:pr-1 ${service.popular ? "text-white" : "text-primary"}`}
+            >
+              Book now
+              <span class="text-lg leading-none">→</span>
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

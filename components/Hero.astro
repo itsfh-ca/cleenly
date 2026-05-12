@@ -1,0 +1,183 @@
+---
+const PHONE = "(604) 555-0192";
+const PHONE_HREF = "tel:+16045550192";
+
+const badges = [
+  {
+    label: "Fully Insured",
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>`,
+  },
+  {
+    label: "100% Satisfaction",
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>`,
+  },
+  {
+    label: "Same-Day Available",
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>`,
+  },
+];
+---
+
+<section
+  class="relative pt-16 overflow-hidden bg-linear-to-br from-slate-50 via-white to-primary/5"
+>
+  <!-- Background decoration -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div
+      class="absolute top-0 right-0 w-150 h-150 bg-primary/2.5 rounded-full -translate-y-1/2 translate-x-1/3"
+    >
+    </div>
+    <div
+      class="absolute bottom-0 left-0 w-100 h-100 bg-primary/2.5 rounded-full translate-y-1/3 -translate-x-1/4"
+    >
+    </div>
+  </div>
+
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-16 md:py-24 lg:py-28">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <!-- Left Content -->
+      <div>
+        <!-- Location Badge -->
+        <div
+          class="inline-flex items-center gap-2 bg-primary/5 border border-primary/10 text-primary text-sm px-4 py-1.5 rounded-full mb-6"
+        >
+          <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+          Serving Langley, White Rock & Surrey
+        </div>
+
+        <h1
+          class="font-display text-4xl sm:text-5xl lg:text-[3.25rem] leading-[1.15] text-slate-900 mb-5"
+        >
+          Professional Home Cleaning in Langley, Surrey &amp; White Rock —{" "}
+          <span class="text-primary">Starting at $99</span>
+        </h1>
+
+        <p class="text-lg text-slate-600 mb-8 max-w-lg leading-relaxed">
+          Reliable, thorough, and trusted local cleaning service. Same-day
+          availability available.
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex flex-col sm:flex-row gap-3 mb-10">
+          <a
+            href="#quote"
+            class="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors text-base px-8 py-4 rounded-xl font-medium shadow-lg shadow-primary/20"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"
+              ></path>
+            </svg>
+            Get Instant Quote
+          </a>
+
+          <a
+            href={PHONE_HREF}
+            class="inline-flex items-center justify-center gap-2 border border-slate-300 hover:bg-slate-50 transition-colors text-base px-8 py-4 rounded-xl font-medium"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.22 2.18 2 2 0 012.22 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"
+              ></path>
+            </svg>
+            {PHONE}
+          </a>
+        </div>
+
+        <!-- Trust Badges -->
+        <div class="flex flex-wrap gap-4">
+          {
+            badges.map((badge) => (
+              <div class="flex items-center gap-2 text-sm font-medium text-slate-700">
+                <div
+                  class="w-8 h-8 bg-primary/10 text-primary rounded-lg flex items-center justify-center shrink-0"
+                  set:html={badge.icon}
+                />
+                {badge.label}
+              </div>
+            ))
+          }
+        </div>
+
+        <!-- Social Proof -->
+        <div class="mt-8 flex items-center gap-3">
+          <div class="flex -space-x-2">
+            {
+              [
+                "bg-primary/20",
+                "bg-primary/30",
+                "bg-primary/40",
+                "bg-primary/60",
+              ].map((color, i) => (
+                <div
+                  class={`w-8 h-8 ${color} rounded-full border-2 border-white`}
+                />
+              ))
+            }
+          </div>
+          <div>
+            <div class="flex gap-0.5">
+              {
+                [1, 2, 3, 4, 5].map((_) => (
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="#f59e0b"
+                    stroke="#f59e0b"
+                    stroke-width="1"
+                  >
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                ))
+              }
+            </div>
+            <p class="text-xs text-slate-500 mt-0.5">
+              <span class="font-semibold text-slate-700">4.9/5</span> from 200+ happy
+              customers
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Image -->
+      <div class="relative lg:block hidden">
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl aspect-4/3">
+          <img
+            src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80"
+            alt="Professional cleaner cleaning a bright modern kitchen"
+            class="object-cover w-full h-full"
+            loading="eager"
+            width="800"
+            height="600"
+          />
+        </div>
+
+        <!-- Floating Stat -->
+        <div
+          class="absolute -top-4 -right-4 bg-primary text-primary-foreground rounded-2xl px-5 py-3 shadow-xl"
+        >
+          <p class="text-2xl font-display font-bold">200+</p>
+          <p class="text-xs text-primary-foreground/80">Homes cleaned</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

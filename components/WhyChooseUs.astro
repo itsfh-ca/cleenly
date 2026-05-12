@@ -1,0 +1,79 @@
+---
+const reasons = [
+  {
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>`,
+    title: "Same-Day Bookings",
+    description: "Need it done today? We have same-day availability 7 days a week. Book before noon and we can be there this afternoon.",
+    color: "bg-blue-50 text-blue-600",
+  },
+  {
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23" /><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" /></svg>`,
+    title: "Flat Pricing",
+    description: "You get a firm price upfront — no surprises. We don't charge by the hour, so you're never rushed.",
+    color: "bg-green-50 text-green-600",
+  },
+  {
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 00-3-3.87" /><path d="M16 3.13a4 4 0 010 7.75" /></svg>`,
+    title: "Trusted Cleaners",
+    description: "Every cleaner is background-checked, vetted, and trained. You only get reliable, professional cleaners in your home.",
+    color: "bg-purple-50 text-purple-600",
+  },
+  {
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>`,
+    title: "Satisfaction Guarantee",
+    description: "Not happy with any area? We'll come back and re-clean it for free within 24 hours. No questions asked.",
+    color: "bg-amber-50 text-amber-600",
+  },
+  {
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="22" height="18" rx="2" /><line x1="1" y1="9" x2="23" y2="9" /></svg>`,
+    title: "Easy Online Booking",
+    description: "Book in under 60 seconds. No phone tag, no waiting — just fill out our form and we handle the rest.",
+    color: "bg-rose-50 text-rose-600",
+  },
+  {
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" /></svg>`,
+    title: "Local & Community-Focused",
+    description: "We're based right here in Surrey. Supporting Cleenly means supporting a locally owned, community-first business.",
+    color: "bg-teal-50 text-teal-600",
+  },
+];
+---
+
+<section class="py-16 bg-white">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <p class="text-primary font-semibold text-sm uppercase tracking-widest mb-3">
+        Why Cleenly
+      </p>
+      <h2 class="text-4xl md:text-5xl font-semibold tracking-tight text-slate-900 mb-4">
+        Why Hundreds of Families Choose Us
+      </h2>
+      <p class="text-slate-500 max-w-2xl mx-auto">
+        Cleenly Services was founded with one goal — to deliver top-quality cleaning that busy families and homeowners can actually trust.
+      </p>
+    </div>
+
+    <!-- Reasons Grid -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {reasons.map((reason) => (
+        <div class="flex gap-5 p-7 rounded-3xl border border-slate-100 hover:border-primary/20 hover:bg-slate-50 transition-all duration-200 group">
+          <!-- Icon -->
+          <div class={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 ${reason.color}`}>
+            <div set:html={reason.icon} />
+          </div>
+
+          <!-- Content -->
+          <div>
+            <h3 class="font-semibold text-slate-900 text-xl mb-2.5">
+              {reason.title}
+            </h3>
+            <p class="text-slate-600 leading-relaxed text-[15px]">
+              {reason.description}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

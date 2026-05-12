@@ -1,0 +1,308 @@
+---
+
+---
+
+<section id="quote" class="py-16 bg-white">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div
+      class="bg-linear-to-br from-primary to-primary/95 rounded-3xl overflow-hidden shadow-2xl"
+    >
+      <div class="grid lg:grid-cols-2">
+        <!-- Left: Info -->
+        <div class="p-8 md:p-12 text-white">
+          <h2 class="text-3xl md:text-4xl font-semibold mb-4 leading-tight">
+            Get Your Free Quote in 60 Seconds
+          </h2>
+          <p class="text-primary-foreground/80 text-lg mb-8">
+            No obligation. We'll get back to you within 15 minutes during
+            business hours.
+          </p>
+
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <div
+                class="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center shrink-0 mt-0.5"
+              >
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <span class="text-primary-foreground/90"
+                >Flat, transparent pricing — no surprises</span
+              >
+            </li>
+            <li class="flex items-start gap-3">
+              <div
+                class="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center shrink-0 mt-0.5"
+              >
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <span class="text-primary-foreground/90"
+                >Available as early as today</span
+              >
+            </li>
+            <li class="flex items-start gap-3">
+              <div
+                class="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+              >
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <span class="text-primary-foreground/90"
+                >Vetted, background-checked cleaners</span
+              >
+            </li>
+            <li class="flex items-start gap-3">
+              <div
+                class="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center shrink-0 mt-0.5"
+              >
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <span class="text-primary-foreground/90"
+                >100% satisfaction or we re-clean for free</span
+              >
+            </li>
+          </ul>
+
+          <div class="mt-10 pt-8 border-t border-white/20">
+            <p class="text-primary-foreground/70 text-sm mb-1">
+              Or call us directly
+            </p>
+            <a
+              href="tel:+16045550192"
+              class="text-2xl font-display text-white hover:text-white/80 transition-colors"
+            >
+              (604) 555-0192
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="bg-white p-8 md:p-12" id="quote-form-container">
+          <!-- Success State -->
+          <div
+            id="success-state"
+            class="hidden h-full flex flex-col items-center justify-center text-center py-8"
+          >
+            <div
+              class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6"
+            >
+              <svg
+                width="40"
+                height="40"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#16a34a"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-semibold text-slate-900 mb-2">
+              Quote Request Received!
+            </h3>
+            <p class="text-slate-600 max-w-xs">
+              We'll contact you within 15 minutes. Check your phone for a text
+              from us.
+            </p>
+            <button
+              onclick="resetForm()"
+              class="mt-8 text-primary font-medium hover:underline"
+            >
+              Submit another request
+            </button>
+          </div>
+
+          <!-- Form -->
+          <div id="form-state">
+            <h3 class="font-semibold text-2xl text-slate-900 mb-6">
+              Book Your Cleaning
+            </h3>
+
+            <form id="quote-form" class="space-y-5">
+              <div>
+                <label class="block text-sm font-medium text-slate-700 mb-1.5"
+                  >Full Name *</label
+                >
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  placeholder="Jane Smith"
+                  class="w-full px-4 py-3 border border-slate-300 rounded-2xl focus:outline-none focus:border-primary"
+                />
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-slate-700 mb-1.5"
+                  >Phone Number *</label
+                >
+                <input
+                  type="tel"
+                  name="phone"
+                  required
+                  placeholder="(604) 555-0100"
+                  class="w-full px-4 py-3 border border-slate-300 rounded-2xl focus:outline-none focus:border-primary"
+                />
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-slate-700 mb-1.5"
+                  >Home Address *</label
+                >
+                <input
+                  type="text"
+                  name="address"
+                  required
+                  placeholder="123 Main St, Surrey, BC"
+                  class="w-full px-4 py-3 border border-slate-300 rounded-2xl focus:outline-none focus:border-primary"
+                />
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium text-slate-700 mb-1.5"
+                    >Bedrooms *</label
+                  >
+                  <select
+                    name="bedrooms"
+                    required
+                    class="w-full px-4 py-3 border border-slate-300 rounded-2xl focus:outline-none focus:border-primary"
+                  >
+                    <option value="">Select</option>
+                    <option value="1">1 Bedroom</option>
+                    <option value="2">2 Bedrooms</option>
+                    <option value="3">3 Bedrooms</option>
+                    <option value="4">4 Bedrooms</option>
+                    <option value="5+">5+ Bedrooms</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-slate-700 mb-1.5"
+                    >Bathrooms *</label
+                  >
+                  <select
+                    name="bathrooms"
+                    required
+                    class="w-full px-4 py-3 border border-slate-300 rounded-2xl focus:outline-none focus:border-primary"
+                  >
+                    <option value="">Select</option>
+                    <option value="1">1 Bathroom</option>
+                    <option value="2">2 Bathrooms</option>
+                    <option value="3">3 Bathrooms</option>
+                    <option value="4+">4+ Bathrooms</option>
+                  </select>
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                id="submit-btn"
+                class="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-colors font-semibold py-4 rounded-2xl text-base mt-2 flex items-center justify-center gap-2"
+              >
+                Get My Quote →
+              </button>
+
+              <p class="text-xs text-slate-400 text-center">
+                By submitting, you agree to receive a call or text from Cleenly
+                Services. No spam ever.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById("quote-form") as HTMLFormElement;
+  const formState = document.getElementById("form-state");
+  const successState = document.getElementById("success-state");
+  const submitBtn = document.getElementById("submit-btn");
+
+  function resetForm() {
+    if (form) {
+      form.reset();
+    }
+    if (formState) {
+      formState.classList.remove("hidden");
+    }
+    if (successState) {
+      successState.classList.add("hidden");
+    }
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // Show loading state
+    if (!submitBtn) return;
+    const originalText = submitBtn.innerHTML;
+    (submitBtn as HTMLButtonElement).disabled = true;
+    submitBtn.innerHTML = `
+      <svg class="animate-spin" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 12a9 9 0 11-6.219-8.56" />
+      </svg>
+      Sending...
+    `;
+
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 1300));
+
+    // Show success
+    if (formState) {
+      formState.classList.add("hidden");
+    }
+    if (successState) {
+      successState.classList.remove("hidden");
+    }
+
+    // Reset button
+    (submitBtn as HTMLButtonElement).disabled = false;
+    submitBtn.innerHTML = originalText;
+  });
+</script>

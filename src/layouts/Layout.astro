@@ -1,0 +1,81 @@
+---
+import "../styles/global.css";
+import Footer from "@/components/partial/Footer.astro";
+import Head from "@/components/Head.astro";
+import Navbar from "@/components/partial/Navbar.astro";
+const { class: className, post, hideFloatingSidebar = false } = Astro.props;
+---
+
+<!doctype html>
+<html class="bg-background text-foreground scheme-light-dark" lang="en">
+  <Head image={post || "/static/1200x630.png"}>
+    <slot name="head" />
+  </Head>
+  <body>
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-100 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+      aria-label="Skip to main content"
+    >
+      Skip to main content
+    </a>
+    <Navbar />
+    <script is:inline>
+      (function () {
+        if (window.__preventSamePageNav) return;
+        window.__preventSamePageNav = true;
+
+        function normalizePath(path) {
+          return path ? path.split("#")[0].replace(/\/$/, "") || "/" : "/";
+        }
+
+        function shouldPreventNavigation(link) {
+          if (!link) return false;
+
+          const href = link.getAttribute("href");
+          if (
+            !href ||
+            href.startsWith("http") ||
+            href.startsWith("mailto:") ||
+            href.startsWith("tel:")
+          ) {
+            return false;
+          }
+
+          const currentPath = normalizePath(window.location.pathname);
+          const targetPath = normalizePath(href);
+
+          return currentPath === targetPath && !href.includes("#");
+        }
+
+        function handleTouchStart(e) {
+          const link = e.target.closest('a[data-internal-link="true"]');
+          if (link && shouldPreventNavigation(link)) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            return false;
+          }
+        }
+
+        function handleClick(e) {
+          const link = e.target.closest('a[data-internal-link="true"]');
+          if (link && shouldPreventNavigation(link)) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            return false;
+          }
+        }
+
+        document.addEventListener("touchstart", handleTouchStart, {
+          passive: false,
+          capture: true,
+        });
+        document.addEventListener("click", handleClick, true);
+      })();
+    </script>
+    <slot />
+    <Footer />
+  </body>
+</html>
