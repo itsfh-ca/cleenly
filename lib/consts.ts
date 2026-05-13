@@ -37,6 +37,15 @@ export interface SiteSettings {
   };
 }
 
+export interface SiteMenu {
+  items: {
+    id: string;
+    name: string;
+    href: string;
+    newTab: boolean;
+  }[];
+}
+
 export async function hygraphFetch<T>(
   query: string,
   variables?: Record<string, unknown>
@@ -101,6 +110,30 @@ export async function getSiteSettings(): Promise<SiteSettings> {
   }>(query);
 
   return data.site;
+}
+
+// Fetch Menu
+export async function getSiteMenu(): Promise<SiteMenu> {
+  const query = `
+    query MyQuery {
+      menu(where: {name: "Main"}) {
+        items {
+          ... on MenuItem {
+            id
+            name
+            newTab
+            href
+          }
+        }
+      }
+    }
+  `;
+
+  const data = await hygraphFetch<{
+    menu: SiteMenu;
+  }>(query);
+
+  return data.menu;
 }
 
 // Google Analytics
