@@ -14,37 +14,50 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
-const formSchema = z.object({
-  name: z.string().min(1),
-  email: z.string(),
-  phone: z.string(),
-  address: z.string().min(1),
-  bedroom: z.string().min(0),
-  bathroom: z.string(),
-  message: z.string().optional(),
-});
+import { formSchema } from "@/lib/schemas";
+import { actions } from "astro:actions";
+import { useState } from "react";
 
 export default function QuoteFormNext() {
+  const [success, setSuccess] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      console.log(values);
-      toast(
-        <pre className="mt-2 w-85 rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(values, null, 2)}</code>
-        </pre>,
-      );
+      const result = await actions.send(values);
+      if (result?.error) {
+        const errors = JSON.parse(
+          result.error.message.replace("Failed to validate: ", ""),
+        );
+        const errorMsg = errors[0]?.message || "Please check your form";
+        toast.error(errorMsg);
+        return;
+      }
+      setSuccess(true);
     } catch (error) {
-      console.error("Form submission error", error);
-      toast.error("Failed to submit the form. Please try again.");
+      toast.error("Failed to submit form. Please call us directly.");
+    } finally {
+      return;
     }
   }
 
-  return (
+  return success ? (
+    <div className="p-6 bg-green-100 rounded-md text-center">
+      <h2 className="text-2xl font-semibold mb-4">Thank you!</h2>
+      <p>
+        Your quote request has been received. We will get back to you shortly.
+      </p>
+      <Button
+        variant="outline"
+        className="mt-6"
+        onClick={() => setSuccess(false)}
+      >
+        Submit Another Request
+      </Button>
+    </div>
+  ) : (
     <form
       onSubmit={form.handleSubmit(onSubmit)}
       className="space-y-4 max-w-3xl mx-auto"
@@ -130,7 +143,9 @@ export default function QuoteFormNext() {
         <Textarea id="message" {...form.register("message")} />
         <FieldError>{form.formState.errors.message?.message}</FieldError>
       </Field>
-      <Button type="submit">Submit</Button>
+      <Button type="submit" disabled={form.formState.isSubmitting}>
+        {form.formState.isSubmitting ? "Submitting..." : "Submit"}
+      </Button>
     </form>
   );
 }
