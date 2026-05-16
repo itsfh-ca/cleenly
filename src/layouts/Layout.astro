@@ -75,7 +75,9 @@ const { class: className, post, hideFloatingSidebar = false } = Astro.props;
         document.addEventListener("click", handleClick, true);
       })();
     </script>
-    <slot />
+    <main>
+      <slot />
+    </main>
     <Footer />
   </body>
 </html>
