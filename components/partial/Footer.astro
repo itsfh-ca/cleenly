@@ -1,5 +1,14 @@
 ---
-
+import { getSiteMenu, getSiteSettings } from "@/lib/consts";
+import { Phone } from "lucide-react";
+const menu = await getSiteMenu();
+const site = await getSiteSettings();
+const formatPhone = (phone: string) => {
+  const cleaned = phone.replace(/\D/g, "");
+  return cleaned.replace(/^(\d{3})(\d{3})(\d{4})$/, "($1) $2-$3");
+};
+const formattedPhone = formatPhone(site.phone ? site.phone : "");
+const SiteName = site.siteName.split(" ");
 ---
 
 <footer class="bg-slate-900 text-slate-400">
@@ -8,25 +17,18 @@
       <!-- Brand Column -->
       <div class="lg:col-span-2">
         <div class="flex items-center gap-2 mb-4">
-          <div
-            class="w-9 h-9 bg-primary rounded-xl flex items-center justify-center"
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="white"
-              stroke-width="2.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path>
-              <polyline points="9 22 9 12 15 12 15 22"></polyline>
-            </svg>
-          </div>
+          {
+            site.logo && (
+              <img
+                src={site.logo.url}
+                alt={site.siteName}
+                class="w-5 h-5 object-contain"
+              />
+            )
+          }
           <span class="font-display text-2xl text-white">
-            Cleenly <span class="text-primary">Services</span>
+            {SiteName[0]}
+            <span class="text-primary">{SiteName[1]}</span>
           </span>
         </div>
 
@@ -38,7 +40,7 @@
 
         <div class="space-y-3">
           <a
-            href="tel:+16045550192"
+            href={`tel:${site.phone}`}
             class="flex items-center gap-2 text-sm hover:text-white transition-colors"
           >
             <svg
@@ -55,7 +57,7 @@
                 d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.22 2.18 2 2 0 012.22 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"
               ></path>
             </svg>
-            (604) 555-0192
+            {formattedPhone}
           </a>
 
           <a
@@ -88,23 +90,28 @@
         <ul class="space-y-2.5 text-sm">
           <li>
             <a href="#services" class="hover:text-white transition-colors"
-              >Standard Cleaning</a>
+              >Standard Cleaning</a
+            >
           </li>
           <li>
             <a href="#services" class="hover:text-white transition-colors"
-              >Deep Cleaning</a>
+              >Deep Cleaning</a
+            >
           </li>
           <li>
             <a href="#services" class="hover:text-white transition-colors"
-              >Move-In / Move-Out</a>
+              >Move-In / Move-Out</a
+            >
           </li>
           <li>
             <a href="#services" class="hover:text-white transition-colors"
-              >Airbnb Cleaning</a>
+              >Airbnb Cleaning</a
+            >
           </li>
           <li>
             <a href="#services" class="hover:text-white transition-colors"
-              >Office Cleaning</a>
+              >Office Cleaning</a
+            >
           </li>
         </ul>
       </div>

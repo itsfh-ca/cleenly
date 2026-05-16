@@ -1,5 +1,15 @@
 ---
 import QuoteFormNext from "@/components/react/QuoteForm";
+
+const { site } = Astro.props;
+
+const formatPhone = (phone: string) => {
+  const cleaned = phone.replace(/\D/g, "");
+
+  return cleaned.replace(/^(\d{3})(\d{3})(\d{4})$/, "($1) $2-$3");
+};
+
+const formattedPhone = formatPhone(site.phone);
 ---
 
 <section id="quote" class="py-16 bg-white">
@@ -110,10 +120,10 @@ import QuoteFormNext from "@/components/react/QuoteForm";
               Or call us directly
             </p>
             <a
-              href="tel:+16045550192"
+              href={`tel:${site.phone}`}
               class="text-2xl font-display text-white hover:text-white/80 transition-colors"
             >
-              (604) 555-0192
+              {formattedPhone}
             </a>
           </div>
         </div>

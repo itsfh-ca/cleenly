@@ -16,8 +16,8 @@ const site = await getSiteSettings();
 ---
 
 <Layout site={site}>
-  <Hero />
-  <QuoteForm />
+  <Hero site={site} />
+  <QuoteForm site={site} />
   <TrustReviews />
   <Services />
   <Pricing />
@@ -26,5 +26,5 @@ const site = await getSiteSettings();
   <WhyChooseUs />
   <ServiceArea />
   <FAQ />
-  <FinalCTA />
+  <FinalCTA site={site} />
 </Layout>

@@ -3,8 +3,11 @@ import { getSiteMenu, getSiteSettings } from "@/lib/consts";
 import { Phone } from "lucide-react";
 const menu = await getSiteMenu();
 const site = await getSiteSettings();
-const PHONE = site.phone;
-const PHONE_HREF = `tel:${PHONE}`;
+const formatPhone = (phone: string) => {
+  const cleaned = phone.replace(/\D/g, "");
+  return cleaned.replace(/^(\d{3})(\d{3})(\d{4})$/, "($1) $2-$3");
+};
+const formattedPhone = formatPhone(site.phone ? site.phone : "");
 const SiteName = site.siteName.split(" ");
 ---
 
@@ -47,11 +50,11 @@ const SiteName = site.siteName.split(" ");
     <!-- Right Side CTAs -->
     <div class="flex items-center gap-3">
       <a
-        href={PHONE_HREF}
+        href={`tel:${site.phone}`}
         class="hidden sm:flex items-center gap-2 text-sm font-medium text-slate-700 hover:text-primary transition-colors"
       >
         <Phone size={16} />
-        {PHONE}
+        {formattedPhone}
       </a>
 
       <a
