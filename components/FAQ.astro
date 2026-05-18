@@ -33,6 +33,16 @@ const faqs = [
     a: "Yes! We clean apartments, condos, townhouses, and single-family homes. Just let us know the type and size of your home when booking.",
   },
 ];
+
+const { site } = Astro.props;
+
+const formatPhone = (phone: string) => {
+  const cleaned = phone.replace(/\D/g, "");
+
+  return cleaned.replace(/^(\d{3})(\d{3})(\d{4})$/, "($1) $2-$3");
+};
+
+const formattedPhone = formatPhone(site.phone);
 ---
 
 <section id="faq" class="py-16 bg-white">
@@ -95,10 +105,10 @@ const faqs = [
       <p class="text-slate-600 mb-4">Still have questions?</p>
       <div class="flex flex-col sm:flex-row gap-3 justify-center">
         <a
-          href="tel:+16045550192"
+          href={`tel:+1${site.phone}`}
           class="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors font-medium px-7 py-3.5 rounded-2xl"
         >
-          Call (604) 555-0192
+          Call {formattedPhone}
         </a>
         <a
           href="mailto:hello@cleenly.ca"
